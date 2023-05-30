@@ -7,12 +7,12 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.random.Random
+import kotlin.time.Duration.Companion.seconds
 
-object WebSocketModel {
-
-  private var connected = false
+object WsModel {
 
   private val service = getService<IWsService>()
+  private var connected = false
 
   fun connectToWebSocket(msgPanel: VPanel) {
     if (!connected) {
@@ -25,7 +25,7 @@ object WebSocketModel {
               while (connected) {
                 val i = Random.nextInt()
                 output.send(i)
-                delay(1000)
+                delay(1.seconds)
               }
               input.cancel()
             }

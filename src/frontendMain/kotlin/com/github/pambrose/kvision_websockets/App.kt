@@ -1,7 +1,7 @@
 package com.github.pambrose.kvision_websockets
 
-import com.github.pambrose.kvision_websockets.WebSocketModel.connectToWebSocket
-import com.github.pambrose.kvision_websockets.WebSocketModel.disconnectFromWebSocket
+import com.github.pambrose.kvision_websockets.WsModel.connectToWebSocket
+import com.github.pambrose.kvision_websockets.WsModel.disconnectFromWebSocket
 import io.kvision.Application
 import io.kvision.BootstrapCssModule
 import io.kvision.BootstrapModule
@@ -13,6 +13,7 @@ import io.kvision.module
 import io.kvision.panel.VPanel
 import io.kvision.panel.hPanel
 import io.kvision.panel.root
+import io.kvision.panel.vPanel
 import io.kvision.startApplication
 import io.kvision.utils.px
 import kotlinx.browser.window
@@ -26,36 +27,37 @@ class App : Application() {
   override fun start(state: Map<String, Any>) {
 
     val msgPanel = VPanel {
-      marginLeft = 5.px
+      marginLeft = 10.px
     }
 
     root("kvapp") {
 
-      h1 { +"WebSocket Demo" }
-
-      hPanel {
+      vPanel {
+        marginTop = 20.px
+        marginLeft = 20.px
         spacing = 15
 
-        button("Connect to WebSocket") {
-          onClick {
-            connectToWebSocket(msgPanel)
+        h1 { +"KVision WebSocket Demo" }
+
+        hPanel {
+          spacing = 15
+
+          button("Connect to WebSocket") {
+            onClick {
+              connectToWebSocket(msgPanel)
+            }
+          }
+
+          button("Disconnect from WebSocket") {
+            onClick {
+              disconnectFromWebSocket()
+            }
           }
         }
 
-        button("Disconnect from WebSocket") {
-          onClick {
-            disconnectFromWebSocket()
-          }
-        }
+        add(msgPanel)
       }
-
-      add(msgPanel)
     }
-
-//    AppScope.launch {
-//      val pingResult = PingModel.ping("Hello world from client!")
-//      root.add(Div(pingResult))
-//    }
   }
 }
 

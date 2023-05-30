@@ -12,7 +12,7 @@ actual class WsService : IWsService {
 
   override suspend fun sendIntReceiveString(input: ReceiveChannel<Int>, output: SendChannel<String>) {
     for (i in input) {
-      output.send("I'v got: $i")
+      output.send("Got back: $i")
     }
   }
 }
