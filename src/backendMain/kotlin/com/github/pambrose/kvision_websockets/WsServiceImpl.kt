@@ -10,7 +10,7 @@ actual class WsService : IWsService {
   @Inject
   lateinit var wsSession: WebSocketServerSession
 
-  override suspend fun sendIntReceiveString(input: ReceiveChannel<Int>, output: SendChannel<String>) {
+  override suspend fun wsService(input: ReceiveChannel<Int>, output: SendChannel<String>) {
     for (i in input) {
       output.send("Got back: $i")
     }

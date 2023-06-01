@@ -17,15 +17,20 @@ object WsModel {
   private val service = getService<IWsService>()
   private var connected = false
 
+  fun VPanel.println(msg: String) {
+    add(Span(msg))
+  }
+
   @OptIn(ExperimentalCoroutinesApi::class)
   fun connectToWebSocket(msgPanel: VPanel) {
     if (!connected) {
       connected = true
       AppScope.launch {
-        msgPanel.add(Span("Connecting to WebSocket"))
-        service.sendIntReceiveString() { output: SendChannel<Int>, input: ReceiveChannel<String> ->
+        service.wsService() { output: SendChannel<Int>, input: ReceiveChannel<String> ->
+          msgPanel.removeAll()
+          msgPanel.println("Connecting to WebSocket")
           output.invokeOnClose {
-            msgPanel.add(Span("WebSocket connection closed"))
+            msgPanel.println("WebSocket connection closed")
           }
           coroutineScope {
             launch {
@@ -39,7 +44,7 @@ object WsModel {
 
             launch {
               for (str in input) {
-                msgPanel.add(Span(str))
+                msgPanel.println(str)
               }
             }
           }

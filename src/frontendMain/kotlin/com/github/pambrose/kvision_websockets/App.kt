@@ -15,6 +15,8 @@ import io.kvision.panel.hPanel
 import io.kvision.panel.root
 import io.kvision.panel.vPanel
 import io.kvision.startApplication
+import io.kvision.state.ObservableValue
+import io.kvision.state.bind
 import io.kvision.utils.px
 import kotlinx.browser.window
 import kotlinx.coroutines.CoroutineScope
@@ -23,6 +25,8 @@ import kotlinx.coroutines.asCoroutineDispatcher
 val AppScope = CoroutineScope(window.asCoroutineDispatcher())
 
 class App : Application() {
+
+  private val connected = ObservableValue(false)
 
   override fun start(state: Map<String, Any>) {
 
@@ -44,13 +48,19 @@ class App : Application() {
 
           button("Connect to WebSocket") {
             onClick {
-              connectToWebSocket(msgPanel)
-            }
-          }
+              if (connected.value)
+                disconnectFromWebSocket()
+              else
+                connectToWebSocket(msgPanel)
 
-          button("Disconnect from WebSocket") {
-            onClick {
-              disconnectFromWebSocket()
+              connected.value = !connected.value
+            }
+
+            bind(connected) {
+              text = if (it)
+                "Disconnect from WebSocket"
+              else
+                "Connect to WebSocket"
             }
           }
         }

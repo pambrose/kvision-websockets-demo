@@ -7,10 +7,10 @@ import kotlinx.coroutines.channels.SendChannel
 @KVService
 interface IWsService {
   // Server side
-  suspend fun sendIntReceiveString(input: ReceiveChannel<Int>, output: SendChannel<String>) {
+  suspend fun wsService(input: ReceiveChannel<Int>, output: SendChannel<String>) {
   }
 
   // Client side
-  suspend fun sendIntReceiveString(handler: suspend (SendChannel<Int>, ReceiveChannel<String>) -> Unit) {
+  suspend fun wsService(handler: suspend (SendChannel<Int>, ReceiveChannel<String>) -> Unit) {
   }
 }
