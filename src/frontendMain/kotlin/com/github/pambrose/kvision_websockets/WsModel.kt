@@ -1,6 +1,7 @@
 package com.github.pambrose.kvision_websockets
 
 import io.kvision.html.Span
+import io.kvision.panel.SimplePanel
 import io.kvision.panel.VPanel
 import io.kvision.remote.getService
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -17,7 +18,7 @@ object WsModel {
   private val service = getService<IWsService>()
   private var connected = false
 
-  fun VPanel.println(msg: String) {
+  fun SimplePanel.write(msg: String) {
     add(Span(msg))
   }
 
@@ -28,9 +29,9 @@ object WsModel {
       AppScope.launch {
         service.wsService() { output: SendChannel<Int>, input: ReceiveChannel<String> ->
           msgPanel.removeAll()
-          msgPanel.println("Connecting to WebSocket")
+          msgPanel.write("Connecting to WebSocket")
           output.invokeOnClose {
-            msgPanel.println("WebSocket connection closed")
+            msgPanel.write("WebSocket connection closed")
           }
           coroutineScope {
             launch {
@@ -44,7 +45,7 @@ object WsModel {
 
             launch {
               for (str in input) {
-                msgPanel.println(str)
+                msgPanel.write(str)
               }
             }
           }
