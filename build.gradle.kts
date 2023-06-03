@@ -3,10 +3,11 @@ import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 plugins {
     val kotlinVersion: String by System.getProperties()
+    val kvisionVersion: String by System.getProperties()
     kotlin("plugin.serialization") version kotlinVersion
     kotlin("multiplatform") version kotlinVersion
-    val kvisionVersion: String by System.getProperties()
     id("io.kvision") version kvisionVersion
+    id("com.github.ben-manes.versions") version "0.46.0"
 }
 
 version = "1.0.0-SNAPSHOT"

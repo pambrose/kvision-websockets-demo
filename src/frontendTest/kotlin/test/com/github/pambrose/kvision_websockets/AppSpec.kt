@@ -1,4 +1,4 @@
-package test.com.github.pambrose.kvision_websockets
+package test.com.github.pambrose.websockets
 
 import io.kvision.test.SimpleSpec
 import kotlin.test.Test

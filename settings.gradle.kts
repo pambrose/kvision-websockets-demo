@@ -5,4 +5,4 @@ pluginManagement {
     mavenLocal()
   }
 }
-rootProject.name = "kvision_websockets"
+rootProject.name = "kvision-websockets"

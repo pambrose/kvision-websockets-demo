@@ -1,4 +1,4 @@
-package com.github.pambrose.kvision_websockets
+package com.github.pambrose.websockets
 
 @Suppress("ACTUAL_WITHOUT_EXPECT")
 actual class PingService : IPingService {

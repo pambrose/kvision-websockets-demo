@@ -1,4 +1,4 @@
-package com.github.pambrose.kvision_websockets
+package com.github.pambrose.websockets
 
 import com.google.inject.Inject
 import io.ktor.server.websocket.*

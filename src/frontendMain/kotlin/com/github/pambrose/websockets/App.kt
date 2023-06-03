@@ -1,7 +1,7 @@
-package com.github.pambrose.kvision_websockets
+package com.github.pambrose.websockets
 
-import com.github.pambrose.kvision_websockets.WsModel.connectToWebSocket
-import com.github.pambrose.kvision_websockets.WsModel.disconnectFromWebSocket
+import com.github.pambrose.websockets.WsModel.connectToWebSocket
+import com.github.pambrose.websockets.WsModel.disconnectFromWebSocket
 import io.kvision.Application
 import io.kvision.BootstrapCssModule
 import io.kvision.BootstrapModule

@@ -1,4 +1,4 @@
-package com.github.pambrose.kvision_websockets
+package com.github.pambrose.websockets
 
 import io.kvision.annotations.KVService
 import kotlinx.coroutines.channels.ReceiveChannel

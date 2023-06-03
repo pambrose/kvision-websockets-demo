@@ -1,4 +1,4 @@
-package com.github.pambrose.kvision_websockets
+package com.github.pambrose.websockets
 
 import io.ktor.server.application.*
 import io.ktor.server.plugins.compression.*
